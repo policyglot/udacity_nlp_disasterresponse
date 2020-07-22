@@ -3,6 +3,7 @@ import pandas as pd
 import re
 from sqlalchemy import create_engine
 from scikitlearn.multioutput import MultipleOutputClassifier
+from nltk import word_tokenizer
 # download necessary NLTK data
 import nltk
 nltk.download(['punkt', 'wordnet'])
@@ -17,6 +18,8 @@ df = pd.read_sql("SELECT * FROM population_data", engine)
 def tokenize(text):
     text = text.lower()
     text = re.sub(r'[^A-Za-x0-9]', ' ', text)
+    text = word_tokenizer(text)
+    return text
     
 
 
