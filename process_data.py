@@ -29,3 +29,6 @@ df = pd.concat([df,categories], axis=1)
 
 # drop duplicates
 df = df.drop_duplicates()
+# create sql database
+engine = create_engine('sqlite:///InsertDatabaseName.db')
+df.to_sql('InsertTableName', engine, index=False)
