@@ -21,7 +21,7 @@ def tokenize(text):
     text = word_tokenizer(text)
     return text
     
-
+X_train, X_test, y_train, y_test = test_train_split(X, y, test_size=0.33, random_seed=2020)
 
 #Machine Learning Pipeline
 pipeline =  Pipeline([
@@ -30,5 +30,6 @@ pipeline =  Pipeline([
 	('clf', RandomForestClassifier()) 
 	])
 
-pipeline.fit(Xtrain)
-predict = pipeline.predict(Xtest)
+pipeline.fit(X_train)
+predict = pipeline.predict(X_test)
+
