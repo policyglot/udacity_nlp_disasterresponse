@@ -26,3 +26,6 @@ df.drop('categories', axis=1, inplace=True)
 df.head()
 
 df = pd.concat([df,categories], axis=1)
+
+# drop duplicates
+df = df.drop_duplicates()
