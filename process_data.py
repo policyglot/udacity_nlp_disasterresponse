@@ -1,6 +1,7 @@
 
 # import libraries
 import pandas as pd
+from sqlalchemy import create_engine
 # load messages dataset
 messages = pd.read_csv('messages.csv')
 # load categories dataset
@@ -30,5 +31,5 @@ df = pd.concat([df,categories], axis=1)
 # drop duplicates
 df = df.drop_duplicates()
 # create sql database
-engine = create_engine('sqlite:///InsertDatabaseName.db')
-df.to_sql('InsertTableName', engine, index=False)
+engine = create_engine('sqlite:///disaster_response.db')
+df.to_sql('response_type', engine, index=False)
