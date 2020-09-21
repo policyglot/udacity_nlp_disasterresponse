@@ -6,7 +6,9 @@ from scikitlearn.multioutput import MultipleOutputClassifier
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.metrics import classification_report
-from sklearn.
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import train_test_split 
 # To import from the database
 from sqlalchemy import create_engine
 # To set up NLP pipelines
