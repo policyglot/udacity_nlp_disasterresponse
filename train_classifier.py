@@ -12,7 +12,7 @@ from sklearn.ensemble import RandomForestClassifier
 #For Word Processing
 import re
 import nltk
-nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger'])
+nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger', 'stopwords'])
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
@@ -66,7 +66,7 @@ parameters = {#'scaler__with_mean':['True','False'],
              'clf__n_estimators': [100, 300],
              'clf__max_features':[5, 8]}
 
-cv = GridSearchCV(pipeline, parameters)
+cv = GridSearchCV(pipeline, parameters, n_jobs=4, verbose=2)
 
 start = time.time()
 cv.fit(X_train, y_train)
