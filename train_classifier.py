@@ -1,26 +1,33 @@
-# Complete necessary imports
+# import libraries
 import pandas as pd
-import re
+import time
 from sqlalchemy import create_engine
-from scikitlearn.multioutput import MultipleOutputClassifier
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
+
+# global for Random State 
+seed = 2020
+
+# Specific Machine Learning Algorithms
+from sklearn.ensemble import RandomForestClassifier
+
+#For Word Processing
+import re
+import nltk
+nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger'])
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from nltk.corpus import stopwords
+stop_words = stopwords.words("english")
+
+#For the Machine Learning Model
+from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import classification_report
-from sklearn.pipeline import Pipeline
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split 
-# To import from the database
-from sqlalchemy import create_engine
-# To set up NLP pipelines
-from nltk import word_tokenizer
-# download necessary NLTK data
-import nltk
-nltk.download(['punkt', 'wordnet'])
-from nltk.corpus import stopwords
-from nltk.stem.wordnet import WordNetLemmatizer
 
-stop_words = stopwords.words("english")
-lemmatizer = WordNetLemmatizer()
+# For Model Fit
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import GridSearchCV
 
 # tokenize the data
 def tokenize(text):
