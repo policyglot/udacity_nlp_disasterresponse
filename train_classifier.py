@@ -33,7 +33,7 @@ from sklearn.model_selection import GridSearchCV
 def tokenize(text):
     text = text.lower()
     text = re.sub(r'[^A-Za-x0-9]', ' ', text)
-    tokens = word_tokenizer(text)
+    tokens = word_tokenize(text)
     tokens = [lemmatizer.lemmatize(word) for word in tokens if word not in stop_words]
     return tokens
 
