@@ -56,3 +56,28 @@ pipeline =  Pipeline([
 pipeline.fit(X_train, y_train)
 predicted = pipeline.predict(X_test)
 
+issues = y_test.columns
+y_pred_df = pd.DataFrame(y_pred, columns=issues)
+for issue in issues:
+    print(classification_report(y_test[issue], 
+                            y_pred_df[issue]))
+
+parameters = {#'scaler__with_mean':['True','False'],
+             'clf__n_estimators': [100, 300],
+             'clf__max_features':[5, 8]}
+
+cv = GridSearchCV(pipeline, parameters)
+
+start = time.time()
+cv.fit(X_train, y_train)
+# predict on test data
+y_pred = cv.predict(X_test)
+end = time.time()
+print(end-start)
+
+issues = y_test.columns
+y_pred_df = pd.DataFrame(y_pred, columns=issues)
+for issue in issues:
+    print(classification_report(y_test[issue], 
+                            y_pred_df[issue]))
+
